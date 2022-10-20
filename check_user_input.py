@@ -2,6 +2,7 @@
 # и регистрации нового пользователя.
 
 import re
+from logger_action import logger_action as log
 
 
 def check_chars_fullname(x):
