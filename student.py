@@ -40,6 +40,7 @@ def show_home_work():
     pass
 
 def show_scadule():
+    pass
 
 print("Вы находитесь в личном кабинете студента")
 print("1. Досмотреть домашнее задание по предмету")
@@ -55,10 +56,3 @@ elif student_choose == '3':
      pass
 else:
      print("Вы ввели что-то не то. Попробуйте снова")
-
-
-
-
-
-
-
