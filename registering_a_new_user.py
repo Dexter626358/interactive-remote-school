@@ -1,4 +1,6 @@
-from start import chek_use_inpt as chek
+# Данный блок производит регистрацию данных нового пользователя.
+
+from check_user_input import chek_use_inpt as chek
 
 
 def registering_a_new_user():
