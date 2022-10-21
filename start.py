@@ -35,13 +35,13 @@ def start():
             \n1.Регистрация\n2.Вход\n3.Завершить работу')
         select_ = None
         user_list = None
-        list_data = open_data_user(path)
         select_ = check(1)
+        list_data = open_data_user(path)
         if select_ == '1':
-            new_user = r_new()
+            new_user = r_new(list_data)
             if new_user:
                 log(\
-                    f'зарегистрировал новы контакт: {new_user[2]} {new_user[3]}')
+                    f'зарегистрировал новый контакт: {new_user[2]} {new_user[3]}')
                 list_data = add_record_new_user(list_data, new_user, path)
             else:
                 continue

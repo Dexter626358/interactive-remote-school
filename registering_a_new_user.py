@@ -1,9 +1,12 @@
 # Данный блок производит регистрацию данных нового пользователя.
 
 from check_user_input import chek_use_inpt as chek
+from color_out_text import out_red as red
+from color_out_text import out_white as white
+from color_out_text import out_yellow as yellow
 
 
-def registering_a_new_user():
+def registering_a_new_user(data: list):
     new_user = [] * 8
     user_full_name = None
     new_login = None
@@ -15,7 +18,7 @@ def registering_a_new_user():
     while count > 0:
         user_full_name = chek(4)
         if user_full_name:
-            new_login = chek(5)
+            new_login = chek(5, data)
             if new_login:
                 new_password = input('Придумайте ваш пароль: ').strip()
                 status = chek(6)
@@ -35,25 +38,30 @@ def registering_a_new_user():
                         else:
                             count -= 1
                             if count > 0:
-                                print(\
+                                yellow(\
                                 f'Начнем с начала. Осталось попыток: {count}')
+                                white('')
                             continue
                         return new_user
                 else:
                     count -= 1
                     if count > 0:
-                        print(f'Начнем с начала. Осталось попыток{count}')
+                        yellow(f'Начнем с начала. Осталось попыток{count}')
+                        white('')
                     continue
             else:
                 count -= 1
                 if count > 0:
-                    print(f'Начнем с начала. Осталось попыто{count}')
+                    yellow(f'Начнем с начала. Осталось попыто{count}')
+                    white('')
                 continue
         else:
             count -= 1
             if count > 0:
-                print(f'Начнем с начала. Осталось попыт{count}')
+                yellow(f'Начнем с начала. Осталось попыт{count}')
+                white('')
             continue
     else:
-        print('Попытки исчерпаны, позовите взрослого человека, он поможет зарегистрироваться =)')
+        red('\nПопытки исчерпаны, позовите взрослого человека, он поможет зарегистрироваться =)')
+        white('')
         return False
