@@ -25,5 +25,3 @@ def show_and_find_student(data: list, group):
 
 
 
-show_groupmates(test_list, '10')
-show_and_find_student(test_list, '20')
