@@ -69,4 +69,4 @@ def start():
             return print('Программа завершена')
 
 
-start()
+
