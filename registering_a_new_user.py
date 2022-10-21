@@ -25,24 +25,24 @@ def registering_a_new_user(data: list):
                 if status:
                     discription = input('Напишите о себе 2 слова: ')
                     if status == 1:
-                        groupe = '1'
+                        groupe = chek(8)
                     else:
                         groupe = chek(7)
-                        if groupe:
-                            new_user.append(new_login)
-                            new_user.append(new_password)
-                            new_user.extend(user_full_name)
-                            new_user.append(status)
-                            new_user.append(discription)
-                            new_user.append(groupe)
-                        else:
-                            count -= 1
-                            if count > 0:
-                                yellow(\
-                                f'Начнем с начала. Осталось попыток: {count}')
-                                white('')
-                            continue
+                    if groupe:
+                        new_user.append(new_login)
+                        new_user.append(new_password)
+                        new_user.extend(user_full_name)
+                        new_user.append(status)
+                        new_user.append(discription)
+                        new_user.append(groupe)
                         return new_user
+                    else:
+                        count -= 1
+                        if count > 0:
+                            yellow(\
+                            f'Начнем с начала. Осталось попыток: {count}')
+                            white('')
+                        continue
                 else:
                     count -= 1
                     if count > 0:

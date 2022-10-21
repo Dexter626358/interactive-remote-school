@@ -19,6 +19,13 @@ def check_new_login(x):
     return True if reg else False
 
 
+def check_name_object(x):
+    match = re.search(r'^\D{5,20}$', x)
+    return True if match else False
+
+
+
+
 def chek_use_inpt(flag, user = None):
     count_ = 5
     login = None
@@ -37,6 +44,8 @@ def chek_use_inpt(flag, user = None):
             input_ = input('\nНапишите вы студент или учитель: ')
         elif flag == 7 and count_ > 0:
             input_ = input('\nВыберите в какой вы учебной группе из списка:\n1.30-я группа \n2.20-я группа \n3.10-я группа \nваш выбор: ')
+        elif flag == 8 and count_ >0:
+            input_ = input('\n Напишите название вашего предмета: ').strip()
         else:
             red('\nвы превысили количество попыток.\n')
             white('')
@@ -94,6 +103,13 @@ def chek_use_inpt(flag, user = None):
                     return '10'
                 else:
                     raise ValueError
+            elif flag == 8:
+                if check_name_object(input_):
+                    return input_
+                else:
+                    raise NameError
+
+
         except ValueError:
             if flag == 1:
                 yellow('\nВведите число соответстветствующее пункту меню.')
@@ -117,6 +133,8 @@ def chek_use_inpt(flag, user = None):
         except NameError:
             if flag == 5:
                 yellow('\nэтот логин уже занят, придумайте другой.')
+            if flag == 8:
+                yellow('\nэто не похоже на название предмета.')
             count_ -= 1
             if count_ > 0:
                 print(f'Осталось {count_} попыток.')
