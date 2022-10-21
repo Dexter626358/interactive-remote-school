@@ -5,6 +5,8 @@
 from registering_a_new_user import registering_a_new_user as r_new
 from check_user_input import chek_use_inpt as check
 from logger_action import logger_action as log
+from color_out_text import out_green as green
+from color_out_text import out_white as white
 
 
 def open_data_user(path):
@@ -28,10 +30,10 @@ def add_record_new_user(base: list, new_user: list, path: str):
 
 
 def start():
-    print('Вас приветствует интерактивный помошник школы!')
+    print('Вас приветствует интерактивный помошник школы!\n')
     path = 'data_users.txt'
     while True:
-        print('Для продолжения выберите действие:\
+        print('Для продолжения выберите действие:\n\
             \n1.Регистрация\n2.Вход\n3.Завершить работу')
         select_ = None
         user_list = None
@@ -43,6 +45,8 @@ def start():
                 log(\
                     f'зарегистрировал новый контакт: {new_user[2]} {new_user[3]}')
                 list_data = add_record_new_user(list_data, new_user, path)
+                green('\nПользователь успешно зарегистрирован в системе.')
+                white('')
             else:
                 continue
         elif select_ == '2':
