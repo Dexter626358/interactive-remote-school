@@ -6,6 +6,7 @@ from logger_action import logger_action as log
 from color_out_text import out_red as red
 from color_out_text import out_white as white
 from color_out_text import out_yellow as yellow
+from color_out_text import out_green as green
 
 
 def check_chars_fullname(x):
@@ -35,7 +36,7 @@ def chek_use_inpt(flag, user = None):
         elif flag == 6 and count_ > 0:
             input_ = input('\nНапишите вы студент или учитель: ')
         elif flag == 7 and count_ > 0:
-            input_ = input('\nВыберите в какой вы учебной группе из списка:\n1. 30-я группа \n2.20-я группа \n3.10-я группа \nваш выбор: ')
+            input_ = input('\nВыберите в какой вы учебной группе из списка:\n1.30-я группа \n2.20-я группа \n3.10-я группа \nваш выбор: ')
         else:
             red('\nвы превысили количество попыток.\n')
             white('')
@@ -57,8 +58,9 @@ def chek_use_inpt(flag, user = None):
                     raise ValueError
             elif flag == 3:
                 if input_ == user[1]:
-                    print(f'Пароль принят. \
+                    green(f'\nПароль принят. \
                         \nРады вас приветствовать, {user[2]} {user [3]} {user [4]} !')
+                    white('')
                     return input_
                 else:
                     raise ValueError
@@ -69,7 +71,8 @@ def chek_use_inpt(flag, user = None):
                     raise ValueError
             elif flag == 5:
                 if check_new_login(input_):
-                    if not filter(lambda x: x[0] == input_, user):
+                    key_log = list(filter(lambda x: x[0] == input_, user))
+                    if not key_log:
                         return input_
                     else:
                         raise NameError
@@ -93,22 +96,22 @@ def chek_use_inpt(flag, user = None):
                     raise ValueError
         except ValueError:
             if flag == 1:
-                yellow('Введите число соответстветствующее пункту меню.')
+                yellow('\nВведите число соответстветствующее пункту меню.')
             if flag == 2:
-                yellow('Такого логина в базе нет.')
+                yellow('\nТакого логина в базе нет.')
             if flag == 3:
-                yellow('Вы ввели неверный пароль. Попробуйте еще раз.')
+                yellow('\nВы ввели неверный пароль. Попробуйте еще раз.')
             if flag == 4:
-                yellow('Вы ввели неверный формат. Попробуйте еще раз.')
+                yellow('\nВы ввели неверный формат. Попробуйте еще раз.')
             if flag == 5:
-                yellow('Вы ввели неверный формат. Попробуйте еще раз.')
+                yellow('\nВы ввели неверный формат. Попробуйте еще раз.')
             if flag == 6:
-                yellow('Вы ввели неизвестное слово. Попробуйте еще раз.')
+                yellow('\nВы ввели неизвестное слово. Попробуйте еще раз.')
             if flag == 7:
-                yellow('Выберите вашу группу из списка.')
+                yellow('\nВыберите вашу группу из списка.')
             count_ -= 1
             if count_ > 0:
-                print(f'\nОсталось {count_} попыток.')
+                print(f'Осталось {count_} попыток.')
                 white('')
             continue
         except NameError:
