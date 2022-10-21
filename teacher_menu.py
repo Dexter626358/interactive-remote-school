@@ -4,7 +4,6 @@ test_list = od('data_users.txt')
 
 
 def teacher_menu(name_surname):
-    global list_data
     print(f'{name_surname}, добро пожаловать в меню преподавателя!')
     print('1. Посмотреть список студентов')
     print('2. Успеваемость студентов')
