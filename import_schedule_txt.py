@@ -17,8 +17,8 @@ def import_data(path):
     for i in range(len(date[0])):
         if date[0][i].find(':'):
             date_lo.append(date[0][i])
-    for j in range(0, len(date_lo), 44):
-        temp = date_lo[j:j+44:1]
+    for j in range(0, len(date_lo), 42):
+        temp = date_lo[j:j+42:1]
         dict_ = {temp[i] : temp[i + 1] for i in range(0, len(temp) - 1, 2)}
         lines.append(dict_)
     blue(f'\nСправочник успешно импортирован из файла: {path}!\n')
