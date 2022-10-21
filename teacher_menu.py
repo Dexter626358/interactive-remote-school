@@ -2,6 +2,7 @@ from group_data_provider import show_groupmates as sg
 from start import open_data_user as od
 test_list = od('data_users.txt')
 
+
 def teacher_menu(name_surname):
     global list_data
     print(f'{name_surname}, добро пожаловать в меню преподавателя!')
@@ -14,6 +15,12 @@ def teacher_menu(name_surname):
         searchable_group = input("Введите номер группы: ")
         print()
         sg(test_list, searchable_group)
+    elif teacher_click == '2':
+        pass
+    elif teacher_click == '3':
+        pass
+    elif teacher_click == '4':
+        pass
 
 
 
