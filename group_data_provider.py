@@ -8,15 +8,22 @@ def show_groupmates(data: list, group):
     for i in data:
         if i[7] == group:
             result_lst.append(i)
-    user_return = int(input("1 - возврат списка\n2 - возврат строки\nВведите нужное: "))
-    if user_return == 1:
-        for i in result_lst:
-            print(i)
-        return result_lst
-    elif user_return == 2:
-        for i in result_lst:
-            print(i[2], i[3], i[4])
+    for j in result_lst:
+        print(j[2], j[3], j[4])
+
+
+def show_and_find_student(data: list, group):
+    result_lst = []
+    for i in data:
+        if i[7] == group:
+            result_lst.append(i)
+    for j in result_lst:
+        print(j)
+    print("\nВыберите студента введя его ID ( 1-ое значение в списке )")
+    chosen_student = input("Введите ID: ")
+    return chosen_student
 
 
 
 show_groupmates(test_list, '10')
+show_and_find_student(test_list, '20')
