@@ -26,4 +26,4 @@ def import_data(path):
     return(lines)
 
 
-print(import_data('data_schedule.txt'))
+# print(import_data('data_schedule.txt'))
