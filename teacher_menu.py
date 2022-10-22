@@ -45,7 +45,7 @@ def show_schedule(data: list):
 
 
 
-def teacher_menu(data: list):
+def teacher_menu(data: list, user: list):
     while True:
         print('\nДобро пожаловать в меню преподавателя!')
         print('1. Посмотреть список студентов')

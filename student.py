@@ -21,7 +21,7 @@ def show_smarts():
     print("1. Показать оценки за определенную дату")
     print("2. Показать оценки по предмету")
     print("3. Показать все оценки")
-    student_smarts = input("Введите нужный пункт: ")
+    student_smarts = input()
     if student_smarts == '1':
         print('Введите дату в формате dd-mm-yyyy')
         data = input()

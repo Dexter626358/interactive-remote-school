@@ -51,7 +51,7 @@ def start():
                         student(list_data, user_list)
                     elif user_list[5] == '1':
                         pass
-                        teacher(user_list)
+                        teacher(list_data, user_list)
                     else:
                         print('Неизвестный пользователь.')
                         user_list.clear()
