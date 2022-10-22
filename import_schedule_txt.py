@@ -23,7 +23,7 @@ def import_data(path):
         lines.append(dict_)
     blue(f'\nСправочник успешно импортирован из файла: {path}!\n')
     white('')
-    return(lines)
+    return lines
 
 
-# print(import_data('data_schedule.txt'))
+#print(import_data('data_schedule.txt'))

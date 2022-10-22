@@ -8,7 +8,7 @@ from logger_action import logger_action as log
 from color_out_text import out_green as green
 from color_out_text import out_white as white
 from student import user_student_start as student
-# from teacher_menu import teacher_menu as teacher
+from teacher_menu import teacher_menu as teacher
 from data_file import open_data_user as open_
 from data_file import add_record_new_user as record_
 
@@ -49,7 +49,7 @@ def start():
                     student(list_data, user_list)
                 elif user_list[5] == '1':
                     pass
-                    # teacher(user_list)
+                    #teacher(list_data, user_list)
                 else:
                     print('Неизвестный пользователь.')
                     user_list.clear()

@@ -19,7 +19,7 @@ def show_smarts():
     print("1. Показать оценки за определенную дату")
     print("2. Показать оценки по предмету")
     print("3. Показать все оценки")
-    student_smarts = input()
+    student_smarts = input("Введите нужный пункт: ")
     if student_smarts == '1':
         print('Введите дату в формате dd-mm-yyyy')
         data = input()
@@ -77,8 +77,8 @@ def show_scadule(data: list, user: list):
             vw_schdl(data, groupe, day_)
             continue
         elif student_choose == '4' :
-            other_groupe = input('\nНапишиье номер группы: ')
-            if other_groupe == data[0] ['группа']or other_groupe == data[1]['группа'] or other_groupe == data[2]['группа']:
+            other_groupe = input('\nНапишите номер группы: ')
+            if other_groupe == data[0] ['группа'] or other_groupe == data[1]['группа'] or other_groupe == data[2]['группа']:
                 vw_schdl(data, other_groupe)
                 continue
         elif student_choose == '5':
@@ -116,7 +116,7 @@ def user_student_start(data: list, user: list):
             user.clear()
             return user
         else:
-             print("Вы ввели что-то не то. Попробуйте снова")
-             continue
+            print("Вы ввели что-то не то. Попробуйте снова")
+            continue
 
 
