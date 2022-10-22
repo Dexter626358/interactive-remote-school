@@ -7,6 +7,7 @@ from check_user_input import chek_use_inpt as check
 from logger_action import logger_action as log
 from color_out_text import out_green as green
 from color_out_text import out_white as white
+from color_out_text import out_red as red
 from student import user_student_start as student
 from teacher_menu import teacher_menu as teacher
 from data_file import open_data_user as open_
@@ -59,8 +60,11 @@ def start():
         elif select_ == '3':
             log('вышел из программы.')
             return print('Программа завершена')
+        else:
+            red('\nНет такого пункта. Повторите ввод.')
+            white('')
+            log('ошибся с выбором пункта меню.')
+            continue
 
 
 start()
-
-
