@@ -28,7 +28,7 @@ def check_input_date(x):
     math = re.search(r'\d\d.\d\d.\d{4}', x)
     return math[0]
 
-def chits_data (x):
+def cheats_date (x):
     math = re.sub(r'\d\d.\d\d.\d{4}', f'{x[:2]}.09.2022', x)
     return math
 
@@ -115,8 +115,6 @@ def chek_use_inpt(flag, user = None):
                     return input_
                 else:
                     raise NameError
-
-
         except ValueError:
             if flag == 1:
                 yellow('\nВведите число соответстветствующее пункту меню.')
@@ -147,5 +145,3 @@ def chek_use_inpt(flag, user = None):
                 print(f'Осталось {count_} попыток.')
                 white('')
             continue
-
-

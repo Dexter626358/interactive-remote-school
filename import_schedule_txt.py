@@ -21,9 +21,6 @@ def import_data(path):
         temp = date_lo[j:j+42:1]
         dict_ = {temp[i] : temp[i + 1] for i in range(0, len(temp) - 1, 2)}
         lines.append(dict_)
-    blue(f'\nСправочник успешно импортирован из файла: {path}!\n')
+    blue(f'\nРасписание успешно обновлено из файла: {path}!\n')
     white('')
     return(lines)
-
-
-# print(import_data('data_schedule.txt'))
