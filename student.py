@@ -11,8 +11,8 @@ from color_out_text import out_white as white
 from color_out_text import out_yellow as yellow
 from color_out_text import out_red as red
 from color_out_text import out_green as green
-from check_user_input import check_input_date as check_date
-from check_user_input import chits_data as chits
+from check_user_input import cheats_date, check_input_date as check_date
+from check_user_input import cheats_date as cheats
 
 
 def show_smarts():
@@ -53,8 +53,10 @@ def show_smarts():
         print("Вы ввели что-то не то. Попробуйте снова")
         show_smarts()
 
+
 def show_home_work():
     pass
+
 
 def show_scadule(data: list, user: list):
     groupe = user[7]
@@ -68,13 +70,14 @@ def show_scadule(data: list, user: list):
         student_choose = input('\nВаш выбор: ')
         print()
         if student_choose == '1':
-            print('Расписание на сентябрь.')
+            blue('Расписание на сентябрь.')
+            white('')
             vw_schdl(data, groupe)
-            log(f'посмотрел расписание для группы:{groupe} на месяц сентябрь.')
+            log(f'посмотрел расписание для группы: "{groupe}" на месяц сентябрь.')
         elif student_choose == '2' :
-            day_ = date().replace('10', '09')
+            day_ = cheats(date())
             vw_schdl(data, groupe, day_)
-            log(f'посмотрел расписание для группы:{groupe} на {day_} ')
+            log(f'посмотрел расписание для группы: "{groupe}" на {day_} ')
             continue
         elif student_choose == '3' :
             green('\nЛюбая дата сентября 2022 года.\n')
@@ -82,26 +85,26 @@ def show_scadule(data: list, user: list):
             day_ = input('Введите дату через пробел "dd mm YYYY": ')\
                         .strip().replace(' ', '.')
             if check_date(day_):
-                day_ = chits(check_date(day_))
+                day_ = cheats(check_date(day_))
             else:
                 yellow('\nВы ввели дату в неверном формате.')
                 white('')
-                log(f'пытался посмотреть расписание для группы:{groupe} на {day_} ')
+                log(f'пытался посмотреть расписание для группы: "{groupe}" на {day_} ')
                 continue
             print()
             vw_schdl(data, groupe, day_)
-            log(f'посмотрел расписание для группы:{groupe} на {day_} ')
+            log(f'посмотрел расписание для группы: "{groupe}" на {day_} ')
             continue
         elif student_choose == '4' :
             other_groupe = input('\nНапишите номер группы: ')
             if other_groupe == data[0] ['группа']or other_groupe == data[1]['группа'] or other_groupe == data[2]['группа']:
                 vw_schdl(data, other_groupe)
-                log(f'посмотрел расписание для группы:{other_groupe}')
+                log(f'посмотрел расписание для группы: "{other_groupe}"')
                 continue
             else:
                 yellow('\nУ нас нет такой группы.')
                 white('')
-                log(f'пытался посмотреть расписание для группы:{groupe}')
+                log(f'пытался посмотреть расписание для группы: "{groupe}"')
                 continue
         elif student_choose == '5':
             log('вернулся в главное меню студента.')
@@ -111,8 +114,6 @@ def show_scadule(data: list, user: list):
             white('')
             log('ошибся с выбором пункта меню.')
             continue
-
-
 
 
 def user_student_start(data: list, user: list):
@@ -149,5 +150,3 @@ def user_student_start(data: list, user: list):
             log(f'ошибся с пунктом меню ученика.')
             print("Вы ввели что-то не то. Попробуйте снова")
             continue
-
-
