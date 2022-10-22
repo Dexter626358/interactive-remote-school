@@ -68,4 +68,4 @@ def teacher_menu(data: list):
 data = od('data_users.txt')
 sch_list = imp_sch('data_schedule.txt')
 
-teacher_menu(data)
+# teacher_menu(data)
