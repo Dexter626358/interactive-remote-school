@@ -1,5 +1,7 @@
 from group_data_provider import show_groupmates as sg
-from start import open_data_user as od
+from data_file import open_data_user as od
+
+
 test_list = od('data_users.txt')
 
 
@@ -23,4 +25,4 @@ def teacher_menu(name_surname):
 
 
 
-teacher_menu("Мария Николаевна")
+# teacher_menu("Мария Николаевна")

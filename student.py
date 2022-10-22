@@ -5,6 +5,12 @@ import os.path
 from import_schedule_txt import import_data as schedule
 from view_schedule import view_schedule as vw_schdl
 from logger_action import logger_action as log
+from logger_action import get_now_date as date
+from color_out_text import out_blue as blue
+from color_out_text import out_white as white
+from color_out_text import out_yellow as yellow
+from color_out_text import out_red as red
+from color_out_text import out_green as green
 
 
 def show_smarts():
@@ -61,30 +67,33 @@ def show_scadule(data: list, user: list):
         if student_choose == '1':
             print('Расписание на сентябрь.')
             vw_schdl(data, groupe)
-        if student_choose == '2' :
-            day_ = log(\
-                'посмотрел расписание на текущую дату.').replace('10', '09')
+        elif student_choose == '2' :
+            day_ = date().replace('10', '09')
             vw_schdl(data, groupe, day_)
-        if student_choose == '3' :
+            continue
+        elif student_choose == '3' :
             day_ = input('Введите дату через пробел "dd mm YYYY": ')\
                         .replace(' ', '.')
             vw_schdl(data, groupe, day_)
-        if student_choose == '4' :
+            continue
+        elif student_choose == '4' :
             other_groupe = input('\nНапишиье номер группы: ')
             if other_groupe == data[0['группа']] \
                 or other_groupe == data[1['группа']] \
                     or other_groupe == data[2['группа']]:
                 vw_schdl(data, other_groupe)
+                continue
         elif student_choose == '5':
             log('вышел в главное меню студента.')
             break
         else:
             print('\nНеверная команда, повторите выбор.')
+            continue
 
 
 
 
-def user_student_start(user: list):
+def user_student_start(data: list, user: list):
     patch_schedule = 'data_schedule.txt'
     while True:
         print("\nВы находитесь в личном кабинете студента")
@@ -101,7 +110,7 @@ def user_student_start(user: list):
         elif student_choose == '3':
             if os.path.isfile(patch_schedule):
                 schedule_list = schedule(patch_schedule)
-                show_scadule(schedule_list)
+                show_scadule(schedule_list, user)
             else:
                 print('Ошибка. Такого файла нет.')
                 continue
@@ -111,3 +120,5 @@ def user_student_start(user: list):
         else:
              print("Вы ввели что-то не то. Попробуйте снова")
              continue
+
+
