@@ -11,6 +11,8 @@ from color_out_text import out_white as white
 from color_out_text import out_yellow as yellow
 from color_out_text import out_red as red
 from color_out_text import out_green as green
+from check_user_input import check_input_date as check_date
+from check_user_input import chits_data as chits
 
 
 def show_smarts():
@@ -64,28 +66,50 @@ def show_scadule(data: list, user: list):
         print('4.Посмотреть расписание для другой группы.')
         print('5.Вернуть в главное меню студента')
         student_choose = input('\nВаш выбор: ')
+        print()
         if student_choose == '1':
             print('Расписание на сентябрь.')
             vw_schdl(data, groupe)
+            log(f'посмотрел расписание для группы:{groupe} на месяц сентябрь.')
         elif student_choose == '2' :
             day_ = date().replace('10', '09')
             vw_schdl(data, groupe, day_)
+            log(f'посмотрел расписание для группы:{groupe} на {day_} ')
             continue
         elif student_choose == '3' :
+            green('\nЛюбая дата сентября 2022 года.\n')
+            white('')
             day_ = input('Введите дату через пробел "dd mm YYYY": ')\
-                        .replace(' ', '.')
+                        .strip().replace(' ', '.')
+            if check_date(day_):
+                day_ = chits(check_date(day_))
+            else:
+                yellow('\nВы ввели дату в неверном формате.')
+                white('')
+                log(f'пытался посмотреть расписание для группы:{groupe} на {day_} ')
+                continue
+            print()
             vw_schdl(data, groupe, day_)
+            log(f'посмотрел расписание для группы:{groupe} на {day_} ')
             continue
         elif student_choose == '4' :
-            other_groupe = input('\nНапишиье номер группы: ')
+            other_groupe = input('\nНапишите номер группы: ')
             if other_groupe == data[0] ['группа']or other_groupe == data[1]['группа'] or other_groupe == data[2]['группа']:
                 vw_schdl(data, other_groupe)
+                log(f'посмотрел расписание для группы:{other_groupe}')
+                continue
+            else:
+                yellow('\nУ нас нет такой группы.')
+                white('')
+                log(f'пытался посмотреть расписание для группы:{groupe}')
                 continue
         elif student_choose == '5':
-            log('вышел в главное меню студента.')
+            log('вернулся в главное меню студента.')
             break
         else:
-            print('\nНеверная команда, повторите выбор.')
+            red('\nНеверная команда, повторите выбор.')
+            white('')
+            log('ошибся с выбором пункта меню.')
             continue
 
 
@@ -93,6 +117,7 @@ def show_scadule(data: list, user: list):
 
 def user_student_start(data: list, user: list):
     patch_schedule = 'data_schedule.txt'
+    log(f'вошел в меню ученика под аккаунтом: {user[0]}-> {user[2]} {user[3]}.')
     while True:
         print("\nВы находитесь в личном кабинете студента")
         print("\n1. Досмотреть домашнее задание по предмету")
@@ -102,21 +127,27 @@ def user_student_start(data: list, user: list):
         student_choose = input('\nВаш выбор: ')
         #student_choose = '2'
         if student_choose == '1':
+            log('перешел  к просомтру домашнего задания.')
             pass
         elif student_choose == '2':
             show_smarts()
+            log('перешел  к просомтру успеваемости.')
         elif student_choose == '3':
             if os.path.isfile(patch_schedule):
                 schedule_list = schedule(patch_schedule)
                 show_scadule(schedule_list, user)
+                log('перешел  к просомтру расписания.')
             else:
-                print('Ошибка. Такого файла нет.')
+                red('\nОшибка. Такого файла нет.')
+                white('')
                 continue
         elif student_choose == '4':
+            log(f'вышел из аккаунта: {user[0]} .')
             user.clear()
             return user
         else:
-             print("Вы ввели что-то не то. Попробуйте снова")
-             continue
+            log(f'ошибся с пунктом меню ученика.')
+            print("Вы ввели что-то не то. Попробуйте снова")
+            continue
 
 
