@@ -36,30 +36,40 @@ def cheats_date (x):
 def chek_use_inpt(flag, user = None):
     count_ = 5
     login = None
+    action = None
     while True:
         if flag == 1 and count_ > 0:
-            input_ = input('\nвыберете действие: ').strip()
+            input_ = input('\nвыберете пункт меню: ').strip()
+            action = 'пунктов меню'
         elif flag == 2 and count_ > 0:
             input_ = input('\nВведите ваш login: ').strip()
+            action = 'логина'
         elif flag == 3 and count_ > 0:
             input_ = input('\nВведите ваш пароль: ').strip()
+            action = 'пароля'
         elif flag == 4 and count_ > 0:
             input_ = input('\nВведите ваше полное имя(ФИО) через пробел\n: ')
+            action = 'полного имени нового пользователя'
         elif flag == 5 and count_ > 0:
             input_ = input('\nПридумайте ваш login(всего 2-20 символов)\nэто: буквы,цифры и "_"): ').strip()
+            action = 'нового логина нового пользователя'
         elif flag == 6 and count_ > 0:
             input_ = input('\nНапишите вы студент или учитель: ')
+            action = 'принядлежности нового пользователя к касте'
         elif flag == 7 and count_ > 0:
             input_ = input('\nВыберите в какой вы учебной группе из списка:\n1.30-я группа \n2.20-я группа \n3.10-я группа \nваш выбор: ')
+            action = 'выбора своей группы'
         elif flag == 8 and count_ >0:
             input_ = input('\n Напишите название вашего предмета: ').strip()
+            action = 'названия предмета своей специализации'
         else:
+            log(f'превысил допустимое количество попыток ввода {action} .')
             red('\nвы превысили количество попыток.\n')
             white('')
             return False
         try:
             if flag == 1:
-                if input_ == '1' or '2':
+                if input_ == '1' or input_ == '2' or input_ == '3':
                     return input_
                 else:
                     raise ValueError
@@ -116,19 +126,23 @@ def chek_use_inpt(flag, user = None):
                 else:
                     raise NameError
         except ValueError:
-            if flag == 1:
-                yellow('\nВведите число соответстветствующее пункту меню.')
-            if flag == 2:
+            if flag == 1 and count_ == 5:
+                red('\nНет такого пункта. Повторите ввод.\n')
+                yellow('\nНе спешите нажимать клавиатуру, прочитите текст и')
+                yellow('введите число соответстветствующее пункту меню.')
+            elif flag == 1:
+                yellow('введите число соответстветствующее пункту меню.')
+            elif flag == 2:
                 yellow('\nТакого логина в базе нет.')
-            if flag == 3:
+            elif flag == 3:
                 yellow('\nВы ввели неверный пароль. Попробуйте еще раз.')
-            if flag == 4:
+            elif flag == 4:
                 yellow('\nВы ввели неверный формат. Попробуйте еще раз.')
-            if flag == 5:
+            elif flag == 5:
                 yellow('\nВы ввели неверный формат. Попробуйте еще раз.')
-            if flag == 6:
+            elif flag == 6:
                 yellow('\nВы ввели неизвестное слово. Попробуйте еще раз.')
-            if flag == 7:
+            elif flag == 7:
                 yellow('\nВыберите вашу группу из списка.')
             count_ -= 1
             if count_ > 0:
@@ -138,7 +152,7 @@ def chek_use_inpt(flag, user = None):
         except NameError:
             if flag == 5:
                 yellow('\nэтот логин уже занят, придумайте другой.')
-            if flag == 8:
+            elif flag == 8:
                 yellow('\nэто не похоже на название предмета.')
             count_ -= 1
             if count_ > 0:
