@@ -51,7 +51,7 @@ def start():
                         student(list_data, user_list)
                     elif user_list[5] == '1':
                         pass
-                        # teacher(user_list)
+                        teacher(user_list)
                     else:
                         print('Неизвестный пользователь.')
                         user_list.clear()
@@ -62,9 +62,10 @@ def start():
                 log('вышел из программы.')
                 return print('Программа завершена')
         else:
-            print('От греха подальше ....')
+            red('От греха подальше ....')
             print('Программа завершится через 3 секунды')
             print('Прощайте. ')
+            white('')
             time.sleep(3)
             log('принудительно и по доброй воле вышел из программы.')
             return print('Программа завершена')
