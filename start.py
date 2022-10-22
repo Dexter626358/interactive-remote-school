@@ -7,26 +7,10 @@ from check_user_input import chek_use_inpt as check
 from logger_action import logger_action as log
 from color_out_text import out_green as green
 from color_out_text import out_white as white
-
-
-def open_data_user(path):
-    list_data = []
-    with open(path, 'r', encoding='utf-8') as data:
-        line = data.readlines()
-        for i in line:
-            i.replace(' ', '')
-            list_data.append(i.replace('\n', '').split(';'))
-    log(f'скачал базу из файла: {path}')
-    return list_data
-
-
-def add_record_new_user(base: list, new_user: list, path: str):
-    base.append(new_user)
-    new_user = ';'.join(new_user)
-    with open(path, 'a', encoding='utf-8') as data:
-        data.write(f'\n{new_user}')
-    log(f'добавил нового пользователя в базу: {path}')
-    return base
+from student import user_student_start as student
+# from teacher_menu import teacher_menu as teacher
+from data_file import open_data_user as open_
+from data_file import add_record_new_user as record_
 
 
 def start():
@@ -38,13 +22,13 @@ def start():
         select_ = None
         user_list = None
         select_ = check(1)
-        list_data = open_data_user(path)
+        list_data = open_(path)
         if select_ == '1':
             new_user = r_new(list_data)
             if new_user:
                 log(\
                     f'зарегистрировал новый контакт: {new_user[2]} {new_user[3]}')
-                list_data = add_record_new_user(list_data, new_user, path)
+                list_data = record_(list_data, new_user, path)
                 green('\nПользователь успешно зарегистрирован в системе.')
                 white('')
             else:
@@ -61,11 +45,22 @@ def start():
             if password:
                 log(f'успешно авторизовался в системе под логином: {log_}')
                 print('')
-                # return user_list  эта строка возвращала список авторизованного пользователя
+                if user_list[5] == '0':
+                    student(list_data, user_list)
+                elif user_list[5] == '1':
+                    pass
+                    # teacher(user_list)
+                else:
+                    print('Неизвестный пользователь.')
+                    user_list.clear()
+                    continue
             else:
                 continue
         elif select_ == '3':
             log('вышел из программы.')
             return print('Программа завершена')
+
+
+start()
 
 
