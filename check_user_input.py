@@ -24,6 +24,13 @@ def check_name_object(x):
     return True if match else False
 
 
+def check_input_date(x):
+    math = re.search(r'\d\d.\d\d.\d{4}', x)
+    return math[0]
+
+def chits_data (x):
+    math = re.sub(r'\d\d.\d\d.\d{4}', f'{x[:2]}.09.2022', x)
+    return math
 
 
 def chek_use_inpt(flag, user = None):
