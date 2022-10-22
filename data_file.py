@@ -10,7 +10,7 @@ def open_data_user(path):
         for i in line:
             i.replace(' ', '')
             list_data.append(i.replace('\n', '').split(';'))
-    log(f'скачал базу из файла: {path}')
+    log(f'обновил базу из файла: {path}')
     return list_data
 
 
@@ -19,5 +19,5 @@ def add_record_new_user(base: list, new_user: list, path: str):
     new_user = ';'.join(new_user)
     with open(path, 'a', encoding='utf-8') as data:
         data.write(f'\n{new_user}')
-    log(f'добавил нового пользователя в базу: {path}')
+    log(f'добавил нового пользователя c login: "{new_user[0]}" в базу: {path}')
     return base
