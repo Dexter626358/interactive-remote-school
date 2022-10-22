@@ -9,7 +9,7 @@ from color_out_text import out_green as green
 from color_out_text import out_white as white
 from color_out_text import out_red as red
 from student import user_student_start as student
-# from teacher_menu import teacher_menu as teacher
+from teacher_menu import teacher_menu as teacher
 from data_file import open_data_user as open_
 from data_file import add_record_new_user as record_
 
