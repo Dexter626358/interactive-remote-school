@@ -14,18 +14,21 @@ def view_schedule(dict_list_: list, groupe = None, day = None):
             if groupe and day:
                 if i[keys1] == groupe and i[keys2] == day:
                     print(f'{key} : {value}')
-            elif day:
+            elif day and not groupe:
                 if i[keys2] == day:
                     print(f'{key} : {value}')
-            elif groupe:
+            elif groupe and not day:
                 if i[keys1] == groupe:
                     print(f'{key} : {value}')
         print()
+    print()
     if groupe and day:
         log(f'посмотрел базу "расписание" на {day} для группы {groupe}.')
-    if groupe:
+        yellow(f'Отображено расписание на {day} для группы {groupe} ')
+    elif groupe and not day:
         log(f'посмотрел базу "расписание" для группы {groupe}.')
-    if day:
+        yellow(f'Отображено расписание на сентябрь для группы {groupe} ')
+    elif day and not groupe:
         log(f'посмотрел базу "расписание" на {day}.')
-    yellow('Отображено текущее состояние базы.')
+        yellow(f'Отображено расписание на {day} ')
     white('')

@@ -78,9 +78,7 @@ def show_scadule(data: list, user: list):
             continue
         elif student_choose == '4' :
             other_groupe = input('\nНапишиье номер группы: ')
-            if other_groupe == data[0['группа']] \
-                or other_groupe == data[1['группа']] \
-                    or other_groupe == data[2['группа']]:
+            if other_groupe == data[0] ['группа']or other_groupe == data[1]['группа'] or other_groupe == data[2]['группа']:
                 vw_schdl(data, other_groupe)
                 continue
         elif student_choose == '5':
