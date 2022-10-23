@@ -47,7 +47,7 @@ def show_schedule(data: list):
 
 def teacher_menu(data: list, user: list):
     while True:
-        print('\nДобро пожаловать в меню преподавателя!')
+        print(f'\n{user[3]} {user[4]} пожаловать в меню преподавателя!')
         print('1. Посмотреть список студентов')
         print('2. Успеваемость студентов')
         print('3. Расписание студентов')
@@ -60,7 +60,7 @@ def teacher_menu(data: list, user: list):
         elif teacher_click == '2':
             show_marks()
         elif teacher_click == '3':
-            show_schedule(sch_list, )
+            show_schedule(sch_list)
 
         elif teacher_click == '4':
             pass
