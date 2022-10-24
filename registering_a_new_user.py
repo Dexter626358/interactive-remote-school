@@ -24,7 +24,7 @@ def registering_a_new_user(data: list):
                 status = chek(6)
                 if status:
                     discription = input('Напишите о себе 2 слова: ')
-                    if status == 1:
+                    if status == '1':
                         groupe = chek(8)
                     else:
                         groupe = chek(7)
