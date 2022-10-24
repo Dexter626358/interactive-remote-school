@@ -25,8 +25,8 @@ def check_name_object(x):
 
 
 def check_input_date(x):
-    math = re.search(r'\d\d.\d\d.\d{4}', x)
-    return math[0]
+    math = re.search(r'^\d\d.\d\d.\d{4}$', x)
+    return True if math else False
 
 def cheats_date (x):
     math = re.sub(r'\d\d.\d\d.\d{4}', f'{x[:2]}.09.2022', x)

@@ -135,7 +135,7 @@ def show_schedule(data: list, data2: list):
                     day_ = input('Введите дату через пробел "dd mm YYYY": ')\
                             .strip().replace(' ', '.')
                     if check_date(day_):
-                        day_ = cheats(check_date(day_))
+                        day_ = cheats(day_)
                         print()
                         vs(data, searchable_group, day_)
                         log(f'посмотрел расписание для группы: "{searchable_group}" на {day_} ')
@@ -152,7 +152,7 @@ def show_schedule(data: list, data2: list):
                 day_ = input('Введите дату через пробел "dd mm YYYY": ')\
                             .strip().replace(' ', '.')
                 if check_date(day_):
-                    day_ = cheats(check_date(day_))
+                    day_ = cheats(day_)
                     print()
                     vs(data, False, day_)
                     log(f'посмотрел общее расписание на день: {day_} ')
