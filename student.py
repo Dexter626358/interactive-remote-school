@@ -40,9 +40,13 @@ def show_smarts(user: list):
                 print('Такой предмет отсутствует')
                 print()
         elif student_smarts == '2':
+            flag = False
             for smart in smarts:
                 if smart[0] == user:
+                    flag = True
                     print(f'{smart[5]} - {smart[6][0:-1]}')
+            if not flag:
+                print("Оценок нет")
             print()
         elif student_smarts == '3':
             break
@@ -68,14 +72,19 @@ def show_home_work(data: list, user: list):
             print()
         elif student_choose == '2':
             print('Введите название предмета:')
+            flag = False
             subject = input().lower()
             if subject in ['химия', 'биология', 'информатика', 'математика', 'русский язык', 'литература', 'физика']:
                 for homework in homeworks:
                     if homework[0] == groupe and homework[1] == subject:
+                        flag = True
                         print(f'{homework[2][0:-1]}')
+                if not flag:
+                    print('По этому предмету домашнее задение отсуствует')
                 print()
+
             else:
-                print('По этому предмету домашнее задение отсуствует')
+                print('Такого предмета нет')
                 print()
 
         elif student_choose == '3':
@@ -121,7 +130,7 @@ def show_scadule(data: list, user: list):
             vw_schdl(data, groupe, day_)
             log(f'посмотрел расписание для группы: "{groupe}" на {day_} ')
             continue
-        elif student_choose == '4' :
+        elif student_choose == '4':
             other_groupe = input('\nНапишите номер группы: ')
             if other_groupe == data[0] ['группа']or other_groupe == data[1]['группа'] or other_groupe == data[2]['группа']:
                 vw_schdl(data, other_groupe)
