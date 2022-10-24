@@ -1,7 +1,6 @@
 # Данный блок развивает собития пользователя ученик/студент.
-# from genericpath import isfile
+
 import os.path
-# from unittest.mock import patch
 from import_schedule_txt import import_data as schedule
 from view_schedule import view_schedule as vw_schdl
 from logger_action import logger_action as log
@@ -11,7 +10,7 @@ from color_out_text import out_white as white
 from color_out_text import out_yellow as yellow
 from color_out_text import out_red as red
 from color_out_text import out_green as green
-from check_user_input import cheats_date, check_input_date as check_date
+from check_user_input import check_input_date as check_date
 from check_user_input import cheats_date as cheats
 
 
@@ -48,7 +47,6 @@ def show_smarts(user: list):
             break
         else:
             print("Вы ввели что-то не то. Попробуйте снова")
-
 
 
 def show_home_work(data: list, user: list):
@@ -123,14 +121,14 @@ def show_scadule(data: list, user: list):
             continue
         elif student_choose == '4' :
             other_groupe = input('\nНапишите номер группы: ')
-            if other_groupe == data[0] ['группа']or other_groupe == data[1]['группа'] or other_groupe == data[2]['группа']:
+            if other_groupe == data[0]['группа'] or other_groupe == data[1]['группа'] or other_groupe == data[2]['группа']:
                 vw_schdl(data, other_groupe)
                 log(f'посмотрел расписание для группы: "{other_groupe}"')
                 continue
             else:
                 yellow('\nУ нас нет такой группы.')
                 white('')
-                log(f'пытался посмотреть расписание для группы: "{groupe}"')
+                log(f'пытался посмотреть расписание для группы: "{other_groupe}"')
                 continue
         elif student_choose == '5':
             log('вернулся в главное меню студента.')
@@ -150,7 +148,7 @@ def user_student_start(data: list, user: list):
         print("\n1. Досмотреть домашнее задание по предмету")
         print("2. Посмотреть успеваемость по предметам")
         print("3. Посмотреть расписание занятий")
-        print("4. Выход")
+        print("4. Выход из аккаунта")
         student_choose = input('\nВаш выбор: ')
         if student_choose == '1':
             log('перешел  к просмотру домашнего задания.')

@@ -10,7 +10,7 @@ def open_data_user(path):
         for i in line:
             i.replace(' ', '')
             list_data.append(i.replace('\n', '').split(';'))
-    log(f'обновил базу из файла: {path}')
+    log(f'обновил базу пользователей из файла: {path}')
     return list_data
 
 

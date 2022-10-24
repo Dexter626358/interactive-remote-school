@@ -1,5 +1,5 @@
 # Данный блок осуществляет авторизацию пользователя в системе \
-# и регитсрацию нового.
+# и регитсрацию нового пользователя.
 
 import time
 from registering_a_new_user import registering_a_new_user as r_new
@@ -40,7 +40,10 @@ def start():
                 if log_:
                     log(f'пытается зайти под логином: {log_}')
                     user_list = [i for i in list_data if i[0] == log_]
-                    user_list = user_list[0]
+                    if user_list:
+                        user_list = user_list[0]
+                    else:
+                        continue
                 else:
                     continue
                 password = check(3, user_list)
@@ -48,11 +51,13 @@ def start():
                     log(f'успешно авторизовался в системе под логином: {log_}')
                     print('')
                     if user_list[5] == '0':
-                        student(list_data, user_list)
+                        log('перешел в меню ученика.')
+                        user_list = student(list_data, user_list)
                     elif user_list[5] == '1':
-                        pass
-                        teacher(list_data, user_list)
+                        log('перешел в меню преподавателя.')
+                        user_list = teacher(list_data, user_list)
                     else:
+                        log('авторизовал неизвестный аккаунт.')
                         print('Неизвестный пользователь.')
                         user_list.clear()
                         continue
