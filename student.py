@@ -54,8 +54,37 @@ def show_smarts():
         show_smarts()
 
 
-def show_home_work():
-    pass
+def show_home_work(data: list, user: list):
+    groupe = user[7]
+    while True:
+        print(f'1. Посмотреть все домашнее задание для {groupe} группы')
+        print('2. Посмотреть домашнее задание по предмету')
+        print('3. Выход')
+        student_choose = input('\nВаш выбор: ')
+        print()
+        if student_choose == '1':
+            with open('homework.txt', 'r', encoding='utf-8') as file:
+                homeworks = [homework.split(';') for homework in file.readlines()]
+            for homework in homeworks:
+                if homework[0] == groupe:
+                    print(f'{homework[1]} - {homework[2][0:-1]}')
+        elif student_choose == '2':
+            print('Введите название предмета:')
+            subject = input().lower()
+            if subject in ['химия', 'биология', 'информатика', 'математика', 'русский язык', 'литература', 'физика']:
+                with open('homework.txt', 'r', encoding='utf-8') as file:
+                    homeworks = [homework.split(';') for homework in file.readlines()]
+                for homework in homeworks:
+                    if homework[0] == groupe and homework[1] == subject:
+                        print(f'{homework[2][0:-1]}')
+            else:
+                print('По этому предмету домашнее задение отсуствует')
+                print()
+
+        elif student_choose == '3':
+            break
+        else:
+            print("Вы ввели некоректное значение. Попробуйте снова.")
 
 
 def show_scadule(data: list, user: list):
@@ -74,7 +103,7 @@ def show_scadule(data: list, user: list):
             white('')
             vw_schdl(data, groupe)
             log(f'посмотрел расписание для группы: "{groupe}" на месяц сентябрь.')
-        elif student_choose == '2' :
+        elif student_choose == '2':
             day_ = cheats(date())
             vw_schdl(data, groupe, day_)
             log(f'посмотрел расписание для группы: "{groupe}" на {day_} ')
@@ -118,7 +147,7 @@ def show_scadule(data: list, user: list):
 
 def user_student_start(data: list, user: list):
     patch_schedule = 'data_schedule.txt'
-    log(f'вошел в меню ученика под аккаунтом: {user[0]}-> {user[2]} {user[3]}.')
+    log(f'Вошел в меню ученика под аккаунтом: {user[0]}-> {user[2]} {user[3]}.')
     while True:
         print("\nВы находитесь в личном кабинете студента")
         print("\n1. Досмотреть домашнее задание по предмету")
@@ -126,10 +155,9 @@ def user_student_start(data: list, user: list):
         print("3. Посмотреть расписание занятий")
         print("4. Выход")
         student_choose = input('\nВаш выбор: ')
-        #student_choose = '2'
         if student_choose == '1':
-            log('перешел  к просомтру домашнего задания.')
-            pass
+            log('перешел  к просмотру домашнего задания.')
+            show_home_work(data, user)
         elif student_choose == '2':
             show_smarts()
             log('перешел  к просомтру успеваемости.')
