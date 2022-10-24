@@ -21,7 +21,8 @@ def view_schedule(dict_list_: list, groupe = None, day = None):
                         if i[keys3] != '0':
                             print(f'{key} : {value}')
                         else:
-                            print('\nЭто выходной день, учебы нет.')
+                            print(f'\n{day}')
+                            print('Это выходной день, учебы нет.\n')
                             break
                     else:
                         break
@@ -30,7 +31,8 @@ def view_schedule(dict_list_: list, groupe = None, day = None):
                         if i[keys3] != '0':
                             print(f'{key} : {value}')
                         else:
-                            print('\nЭто выходной день, учебы нет.')
+                            print(f'\n{day}')
+                            print('Это выходной день, учебы нет.\n')
                             break
                     else:
                         break
@@ -39,7 +41,8 @@ def view_schedule(dict_list_: list, groupe = None, day = None):
                         if i[keys3] != '0':
                             print(f'{key} : {value}')
                         else:
-                            print('\nЭто выходной день, учебы нет.')
+                            print(f'\nДля группы: {groupe}')
+                            print('Это выходной день, учебы нет.\n')
                             break
                     else:
                         break
