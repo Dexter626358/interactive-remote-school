@@ -114,7 +114,7 @@ def show_scadule(data: list, user: list):
             vw_schdl(data, groupe, day_)
             log(f'посмотрел расписание для группы: "{groupe}" на {day_} ')
             continue
-        elif student_choose == '3' :
+        elif student_choose == '3':
             green('\nЛюбая дата сентября 2022 года.\n')
             white('')
             day_ = input('Введите дату через пробел "dd mm YYYY": ')\
