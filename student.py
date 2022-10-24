@@ -109,7 +109,7 @@ def show_scadule(data: list, user: list):
             day_ = input('Введите дату через пробел "dd mm YYYY": ')\
                         .strip().replace(' ', '.')
             if check_date(day_):
-                day_ = cheats(check_date(day_))
+                day_ = cheats(day_)
             else:
                 yellow('\nВы ввели дату в неверном формате.')
                 white('')
