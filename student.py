@@ -15,47 +15,73 @@ from check_user_input import cheats_date, check_input_date as check_date
 from check_user_input import cheats_date as cheats
 
 
-def show_smarts():
+def show_smarts(user: list):
     with open('class_registr.txt', 'r', encoding='utf-8') as file:
         smarts = [smart.split(';') for smart in file.readlines()]
-    print("1. Показать оценки за определенную дату")
-    print("2. Показать оценки по предмету")
-    print("3. Показать все оценки")
-    student_smarts = input()
-    if student_smarts == '1':
-        print('Введите дату в формате dd-mm-yyyy')
-        data = input()
-        #data = '20-10-2022'
-        data_smarts = [smart for smart in smarts if data in smart]
-        if data_smarts:
-            for data_smart in data_smarts:
-                print(f'{data_smart[1]} {data_smart[5]} {data_smart[6]}')
+    user = user[0]
+    while True:
+        print("1. Показать оценки по предмету")
+        print("2. Показать все оценки")
+        print("3. Вернуться в меню студента")
+        student_smarts = input()
+        if student_smarts == '1':
+            print('Введите название предмета')
+            subject = input().lower()
+            if subject in ['химия', 'биология', 'информатика', 'математика', 'русский язык', 'литература', 'история', 'физика']:
+                flag_subj = False
+                for smart in smarts:
+                    if smart[0] == user and smart[5].lower() == subject:
+                        flag_subj = True
+                        print(f'{smart[6][0:-1]}')
+                print()
+                if flag_subj == False:
+                    print("Оценок нет")
+            else:
+                print('Такой предмет отсутствует')
+                print()
+        elif student_smarts == '2':
+            for smart in smarts:
+                if smart[0] == user:
+                    print(f'{smart[5]} - {smart[6][0:-1]}')
+            print()
+        elif student_smarts == '3':
+            break
         else:
-            print('Нет данных')
-    elif student_smarts == '2':
-        print('Введите название предмета')
-        subject = input().lower()
-        #subject = 'химия'
-        subject_smarts = [smart for smart in smarts if subject in smart]
-        if subject_smarts:
-            for subject_smart in subject_smarts:
-                print(f'{subject_smart[1]} {subject_smart[5]} {subject_smart[6]}')
-        else:
-            print('Нет данных')
-    elif student_smarts == '3':
-        surname_smarts = [smart for smart in smarts]
-        if surname_smarts:
-                for surname_smart in surname_smarts:
-                    print(f'{surname_smart[1]} {surname_smart[5]} {surname_smart[6]}')
-        else:
-            print('Нет данных')
-    else:
-        print("Вы ввели что-то не то. Попробуйте снова")
-        show_smarts()
+            print("Вы ввели что-то не то. Попробуйте снова")
 
 
-def show_home_work():
-    pass
+
+def show_home_work(data: list, user: list):
+    with open('homework.txt', 'r', encoding='utf-8') as file:
+        homeworks = [homework.split(';') for homework in file.readlines()]
+    groupe = user[7]
+    while True:
+        print(f'1. Посмотреть все домашнее задание для {groupe} группы')
+        print('2. Посмотреть домашнее задание по предмету')
+        print('3. Выход')
+        student_choose = input('\nВаш выбор: ')
+        print()
+        if student_choose == '1':
+            for homework in homeworks:
+                if homework[0] == groupe:
+                    print(f'{homework[1]} - {homework[2][0:-1]}')
+            print()
+        elif student_choose == '2':
+            print('Введите название предмета:')
+            subject = input().lower()
+            if subject in ['химия', 'биология', 'информатика', 'математика', 'русский язык', 'литература', 'физика']:
+                for homework in homeworks:
+                    if homework[0] == groupe and homework[1] == subject:
+                        print(f'{homework[2][0:-1]}')
+                print()
+            else:
+                print('По этому предмету домашнее задение отсуствует')
+                print()
+
+        elif student_choose == '3':
+            break
+        else:
+            print("Вы ввели некоректное значение. Попробуйте снова.")
 
 
 def show_scadule(data: list, user: list):
@@ -74,7 +100,7 @@ def show_scadule(data: list, user: list):
             white('')
             vw_schdl(data, groupe)
             log(f'посмотрел расписание для группы: "{groupe}" на месяц сентябрь.')
-        elif student_choose == '2' :
+        elif student_choose == '2':
             day_ = cheats(date())
             vw_schdl(data, groupe, day_)
             log(f'посмотрел расписание для группы: "{groupe}" на {day_} ')
@@ -118,7 +144,7 @@ def show_scadule(data: list, user: list):
 
 def user_student_start(data: list, user: list):
     patch_schedule = 'data_schedule.txt'
-    log(f'вошел в меню ученика под аккаунтом: {user[0]}-> {user[2]} {user[3]}.')
+    log(f'Вошел в меню ученика под аккаунтом: {user[0]}-> {user[2]} {user[3]}.')
     while True:
         print("\nВы находитесь в личном кабинете студента")
         print("\n1. Досмотреть домашнее задание по предмету")
@@ -126,12 +152,11 @@ def user_student_start(data: list, user: list):
         print("3. Посмотреть расписание занятий")
         print("4. Выход")
         student_choose = input('\nВаш выбор: ')
-        #student_choose = '2'
         if student_choose == '1':
-            log('перешел  к просомтру домашнего задания.')
-            pass
+            log('перешел  к просмотру домашнего задания.')
+            show_home_work(data, user)
         elif student_choose == '2':
-            show_smarts()
+            show_smarts(user)
             log('перешел  к просомтру успеваемости.')
         elif student_choose == '3':
             if os.path.isfile(patch_schedule):
