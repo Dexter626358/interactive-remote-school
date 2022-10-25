@@ -21,7 +21,7 @@ def show_marks(data_user: list):
         print('\nОшибка, база данных отсутствует!')
         return False
     while True:
-        teacher_subject = 'Математика'
+        teacher_subject = data_user[7]
         print("\n Меню оценок")
         print('1. Показать все оценки по моему предмету')
         print('2. Показать оценки группы по моему предмету')
@@ -36,8 +36,8 @@ def show_marks(data_user: list):
                     print(result)
         elif teacher_click == '2':
             group_number = input("Введите номер группы: ").strip()
-            list_groupe_user = [i for i in data_user if i[7] == group_number]
-            if list_groupe_user:
+            list_group_user = [i for i in marks if i[1] == group_number]
+            if list_group_user:
                 print()
                 for i in marks:
                     if i[1] == group_number and i[5] == teacher_subject:
@@ -54,7 +54,7 @@ def show_marks(data_user: list):
                 secured_lst = []
                 for i in marks:
                     if i[1] == group_number and i[5] == teacher_subject:
-                        result = i[0] + " " + i[2] + " " + i[3] + " " + i[4] + '-'  + i[6]
+                        result = i[0] + " " + i[2] + " " + i[3] + " " + i[4] + '-' + i[6]
                         secured_lst.append(i[0])
                         print(result)
                 student_id = input("Введите ID студента ( число перед фамилией )    оценку которого хотите изменить: ")
@@ -175,7 +175,8 @@ def show_schedule(data: list, data2: list):
 def teacher_menu(data: list, user: list):
     while True:
         print(f'\nАккаунт: {user[3]} {user[4]} ')
-        print('Menu:')
+        print(f'Предмет: {user[7]}')
+        print('\nMenu:')
         print('1. Посмотреть список студентов')
         print('2. Успеваемость студентов')
         print('3. Расписание студентов')
@@ -194,12 +195,12 @@ def teacher_menu(data: list, user: list):
                     print('\nТакой группы нет в нашей школе.')
                     continue
             elif teacher_click == '2':
-                show_marks(data)
+                show_marks(user)
             elif teacher_click == '3':
                 sch_list = imp_sch('data_schedule.txt')
                 show_schedule(sch_list, data)
             elif teacher_click == '4':
-                pass
+                homework_menu(user)
             elif teacher_click == '5':
                 return user.clear()
             else:
@@ -209,6 +210,37 @@ def teacher_menu(data: list, user: list):
             return user.clear()
 
 
-#show_marks()
+def homework_menu(user: list):
+    with open('homework.txt', 'r', encoding='utf-8') as file:
+        homeworks = [homework.split(';') for homework in file.readlines()]
+    teacher_subject = user[7]
+    while True:
+        print('1. Посмотреть все домашнее задание для выбранной группы')
+        print('2. Задать группе домашнее задание')
+        print('3. Сохранить изменения в файле ДЗ')
+        print('4. Выход')
+        teacher_click = input("Введите пункт меню: ").strip()
+        if teacher_click == '1':
+            searchable_group = input("Введите номер группы: ").strip()
+            for homework in homeworks:
+                if homework[0] == searchable_group and homework[1] == teacher_subject:
+                    print(f'{homework[1]} - {homework[2][0:-1]}')
+        elif teacher_click == '2':
+            searchable_group = input("Введите номер группы: ").strip()
+            added_homework = []
+            hw_string = input("Напишите домашнее задание для группы: ")
+            added_homework = [searchable_group, user[7], hw_string]
+            homeworks.append(added_homework)
+        elif teacher_click == '3':
+            with open('test_hw.txt', 'w', encoding='utf-8') as file:
+                for i in range(len(homeworks)):
+                    for j in range(len(homeworks[i])):
+                        if j == 2:
+                            file.write(str(homeworks[i][j]))
+                        else:
+                            file.write(str(homeworks[i][j]) + ';')
+        elif teacher_click == '4':
+            break
+        else:
+            print("Нет такого пункта меню")
 
-# teacher_menu(data)
