@@ -40,7 +40,7 @@ def show_marks(data_user: list):
             log(f'Учитель по предмету {teacher_subject}, {data_user[3]} {data_user[4]} посмотрел все оценки групп')
         elif teacher_click == '2':
             group_number = input("Введите номер группы: ").strip()
-            if check_marks(group_number, data_user):
+            if check_marks(group_number, marks):
                 print()
                 for i in marks:
                     if i[1] == group_number and i[5] == teacher_subject:
@@ -55,7 +55,7 @@ def show_marks(data_user: list):
                 continue
         elif teacher_click == '3':
             group_number = input("Введите номер группы: ").strip()
-            if check_marks(group_number, data_user):
+            if check_marks(group_number, marks):
                 print()
                 secured_lst = []
                 for i in marks:
@@ -142,7 +142,6 @@ def show_schedule(data: list, data2: list, user: list):
             select_teacher = input('Вывести расписание для группы -> 1 или общее -> 2 ? \n: ')
             if select_teacher == '1':
                 searchable_group = input("Введите номер нужной группы: ").strip()
-
                 if check_groupe(searchable_group, data2):
                     day_ = input('Введите дату через пробел "dd mm YYYY": ')\
                             .strip().replace(' ', '.')
@@ -200,7 +199,6 @@ def teacher_menu(data: list, user: list):
             teacher_click = input("\nВведите нужный пункт: ")
             if teacher_click == '1':
                 searchable_group = input("Введите номер группы: ")
-                # groupe_list = [i for i in data if i[7] == searchable_group]
                 if check_groupe(searchable_group, data):
                     print()
                     sg(data, searchable_group)
