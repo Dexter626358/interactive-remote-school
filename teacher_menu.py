@@ -274,7 +274,7 @@ def homework_menu(user: list):
             homeworks.append(added_homework)
             log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} добавил ДЗ группе:{searchable_group}')
         elif teacher_click == '3':
-            with open('test_hw.txt', 'w', encoding='utf-8') as file:
+            with open('homework.txt', 'w', encoding='utf-8') as file:
                 for i in range(len(homeworks)):
                     for j in range(len(homeworks[i])):
                         if j == 2:
