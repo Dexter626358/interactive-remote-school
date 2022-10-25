@@ -25,7 +25,7 @@ def show_smarts(user: list):
         student_smarts = input()
         if student_smarts == '1':
             print('Введите название предмета')
-            subject = input().lower()
+            subject = input().strip().lower()
             if subject in ['химия', 'биология', 'информатика', 'математика', 'русский язык', 'литература', 'история', 'физика']:
                 flag_subj = False
                 for smart in smarts:
@@ -34,10 +34,11 @@ def show_smarts(user: list):
                         print(f'{smart[6][0:-1]}')
                 print()
                 if flag_subj == False:
-                    print("Оценок нет")
+                    yellow("\nОценок нет")
+                    white('')
             else:
-                print('Такой предмет отсутствует')
-                print()
+                red('\nТакой предмет отсутствует')
+                white('')
         elif student_smarts == '2':
             flag = False
             for smart in smarts:
@@ -45,12 +46,13 @@ def show_smarts(user: list):
                     flag = True
                     print(f'{smart[5]} - {smart[6][0:-1]}')
             if not flag:
-                print("Оценок нет")
-            print()
+                yellow("\nОценок нет")
+            white('')
         elif student_smarts == '3':
             break
         else:
-            print("Вы ввели что-то не то. Попробуйте снова")
+            red("\nВы ввели что-то не то. Попробуйте снова")
+            white('')
 
 
 def show_home_work(data: list, user: list):
@@ -61,7 +63,7 @@ def show_home_work(data: list, user: list):
         print(f'1. Посмотреть все домашнее задание для {groupe} группы')
         print('2. Посмотреть домашнее задание по предмету')
         print('3. Выход')
-        student_choose = input('\nВаш выбор: ')
+        student_choose = input('\nВаш выбор: ').strip()
         print()
         if student_choose == '1':
             for homework in homeworks:
@@ -71,24 +73,25 @@ def show_home_work(data: list, user: list):
         elif student_choose == '2':
             print('Введите название предмета:')
             flag = False
-            subject = input().lower()
+            subject = input().strip().lower()
             if subject in ['химия', 'биология', 'информатика', 'математика', 'русский язык', 'литература', 'физика']:
                 for homework in homeworks:
                     if homework[0] == groupe and homework[1] == subject:
                         flag = True
                         print(f'{homework[2][0:-1]}')
                 if not flag:
-                    print('По этому предмету домашнее задение отсуствует')
-                print()
+                    yellow('\nПо этому предмету домашнее задение отсуствует')
+                white('')
 
             else:
-                print('Такого предмета нет')
-                print()
+                red('\nТакого предмета нет')
+                white('')
 
         elif student_choose == '3':
             break
         else:
-            print("Вы ввели некоректное значение. Попробуйте снова.")
+            red("\nВы ввели некоректное значение. Попробуйте снова.")
+            white('')
 
 
 def show_scadule(data: list, user: list):
