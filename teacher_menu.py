@@ -10,6 +10,7 @@ from check_user_input import cheats_date as cheats
 from check_user_input import check_input_date as check_date
 from color_out_text import out_white as white
 from color_out_text import out_yellow as yellow
+from color_out_text import out_red as red
 
 
 def show_marks(data_user: list):
@@ -27,7 +28,7 @@ def show_marks(data_user: list):
         print('2. Показать оценки группы по моему предмету')
         print('3. Изменить оценку студента')
         print('4. Сохранить изменения оценок')
-        print('5.Вернуть в главное меню преподавателя.')
+        print('5. Вернуть в главное меню преподавателя.')
         teacher_click = input("\n Выберите пункт меню: ").strip()
         if teacher_click == '1':
             for i in marks:
@@ -59,7 +60,8 @@ def show_marks(data_user: list):
                         print(result)
                 student_id = input("Введите ID студента ( число перед фамилией )    оценку которого хотите изменить: ")
                 while student_id not in secured_lst:
-                    print('Неверно выбран ID, повтырите попытку!')
+                    print(yellow('Неверно выбран ID, повтырите попытку!'))
+                    white('')
                     student_id = input("Введите ID студента ( число перед   фамилией ) оценку которого хотите изменить: ").strip()
                 new_mark = input("Введите цифрой новую оценку: ").strip()
                 if new_mark == '5':
@@ -168,7 +170,8 @@ def show_schedule(data: list, data2: list):
             log('вышел в главное меню.')
             break
         else:
-            print('\nНеверная команда, повторите выбор.')
+            print(red('\nНеверная команда, повторите выбор.'))
+            white('')
             continue
 
 
@@ -192,7 +195,8 @@ def teacher_menu(data: list, user: list):
                     print()
                     sg(data, searchable_group)
                 else:
-                    print('\nТакой группы нет в нашей школе.')
+                    print(red('\nТакой группы нет в нашей школе.'))
+                    white('')
                     continue
             elif teacher_click == '2':
                 show_marks(user)
@@ -204,9 +208,11 @@ def teacher_menu(data: list, user: list):
             elif teacher_click == '5':
                 return user.clear()
             else:
-                print('\nНет такого пункта. Выберите из menu.')
+                print(red('\nНет такого пункта. Выберите из menu.'))
+                white('')
         else:
-            print('Нет файла "data_users.txt"')
+            print(red('Нет файла "data_users.txt"'))
+            white('')
             return user.clear()
 
 
@@ -222,11 +228,19 @@ def homework_menu(user: list):
         teacher_click = input("Введите пункт меню: ").strip()
         if teacher_click == '1':
             searchable_group = input("Введите номер группы: ").strip()
+            if searchable_group != '10' and searchable_group != '20' and searchable_group != '30':
+                print(red("Нет такой группы - повторите попытку!"))
+                white('')
+                break
             for homework in homeworks:
                 if homework[0] == searchable_group and homework[1] == teacher_subject:
                     print(f'{homework[1]} - {homework[2][0:-1]}')
         elif teacher_click == '2':
             searchable_group = input("Введите номер группы: ").strip()
+            if searchable_group != '10' and searchable_group != '20' and searchable_group != '30':
+                print(red("Нет такой группы - повторите попытку!"))
+                white('')
+                break
             added_homework = []
             hw_string = input("Напишите домашнее задание для группы: ")
             added_homework = [searchable_group, user[7], hw_string]
@@ -242,5 +256,6 @@ def homework_menu(user: list):
         elif teacher_click == '4':
             break
         else:
-            print("Нет такого пункта меню")
+            print(red("Нет такого пункта меню"))
+            white('')
 
