@@ -32,6 +32,15 @@ def cheats_date (x):
     math = re.sub(r'\d\d.\d\d.\d{4}', f'{x[:2]}.09.2022', x)
     return math
 
+def check_groupe_in_data(groupe, data):
+    list_group_user = [i for i in data if i[7] == groupe]
+    return True if list_group_user else False
+
+
+def check_groupe_in_marks(groupe, data):
+    list_group_user = [i for i in data if i[1] == groupe]
+    return True if list_group_user else False
+
 
 def chek_use_inpt(flag, user = None):
     count_ = 5

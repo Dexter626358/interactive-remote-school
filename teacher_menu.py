@@ -8,9 +8,11 @@ from logger_action import logger_action as log
 from logger_action import get_now_date as date
 from check_user_input import cheats_date as cheats
 from check_user_input import check_input_date as check_date
-from color_out_text import out_white as white
+from check_user_input import check_groupe_in_data as check_groupe
+from check_user_input import check_groupe_in_marks as check_marks
 from color_out_text import out_yellow as yellow
 from color_out_text import out_red as red
+from color_out_text import out_white as white
 
 
 def show_marks(data_user: list):
@@ -38,8 +40,7 @@ def show_marks(data_user: list):
             log(f'Учитель по предмету {teacher_subject}, {data_user[3]} {data_user[4]} посмотрел все оценки групп')
         elif teacher_click == '2':
             group_number = input("Введите номер группы: ").strip()
-            list_group_user = [i for i in marks if i[1] == group_number]
-            if list_group_user:
+            if check_marks(group_number, data_user):
                 print()
                 for i in marks:
                     if i[1] == group_number and i[5] == teacher_subject:
@@ -54,8 +55,7 @@ def show_marks(data_user: list):
                 continue
         elif teacher_click == '3':
             group_number = input("Введите номер группы: ").strip()
-            list_groupe_user = [i for i in marks if i[1] == group_number]
-            if list_groupe_user:
+            if check_marks(group_number, data_user):
                 print()
                 secured_lst = []
                 for i in marks:
@@ -121,8 +121,7 @@ def show_schedule(data: list, data2: list, user: list):
         if teacher_choose == '1':
             print('Расписание на сентябрь.')
             searchable_group = input("Введите номер нужной группы: ").strip()
-            groupe_list = [i for i in data2 if i[7] == searchable_group]
-            if groupe_list:
+            if check_groupe(searchable_group, data2):
                 vs(data, searchable_group)
             else:
                 print('\nТакой группы нет в нашей школе.')
@@ -131,8 +130,7 @@ def show_schedule(data: list, data2: list, user: list):
         elif teacher_choose == '2':
             print('Расписание на сентябрь.')
             searchable_group = input("Введите номер нужной группы: ").strip()
-            groupe_list = [i for i in data2 if i[7] == searchable_group]
-            if groupe_list:
+            if check_groupe(searchable_group, data2):
                 day_ = cheats(date())
                 vs(data, searchable_group, day_)
                 log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} посмотрел расписание')
@@ -144,8 +142,8 @@ def show_schedule(data: list, data2: list, user: list):
             select_teacher = input('Вывести расписание для группы -> 1 или общее -> 2 ? \n: ')
             if select_teacher == '1':
                 searchable_group = input("Введите номер нужной группы: ").strip()
-                groupe_list = [i for i in data2 if i[7] == searchable_group]
-                if groupe_list:
+
+                if check_groupe(searchable_group, data2):
                     day_ = input('Введите дату через пробел "dd mm YYYY": ')\
                             .strip().replace(' ', '.')
                     if check_date(day_):
@@ -202,8 +200,8 @@ def teacher_menu(data: list, user: list):
             teacher_click = input("\nВведите нужный пункт: ")
             if teacher_click == '1':
                 searchable_group = input("Введите номер группы: ")
-                groupe_list = [i for i in data if i[7] == searchable_group]
-                if groupe_list:
+                # groupe_list = [i for i in data if i[7] == searchable_group]
+                if check_groupe(searchable_group, data):
                     print()
                     sg(data, searchable_group)
                     log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} посмотрел список студентов')
