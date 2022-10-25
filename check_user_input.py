@@ -10,7 +10,7 @@ from color_out_text import out_green as green
 
 
 def check_chars_fullname(x):
-    reg = re.search(r'\D{2,20} \D{2,20} \D{2,20}', x)
+    reg = re.search(r'^\D{2,20} \D{2,20} \w{2,20}$', x)
     return True if reg else False
 
 
@@ -63,13 +63,13 @@ def chek_use_inpt(flag, user = None):
             input_ = input('\nПридумайте ваш login(всего 2-20 символов)\nэто: буквы,цифры и "_"): ').strip()
             action = 'нового логина нового пользователя'
         elif flag == 6 and count_ > 0:
-            input_ = input('\nНапишите вы студент или учитель: ').strip()
+            input_ = input('\nНапишите вы студент или учитель: ').strip().lower()
             action = 'принядлежности нового пользователя к касте'
         elif flag == 7 and count_ > 0:
-            input_ = input('\nВыберите в какой вы учебной группе из списка:\n1.30-я группа \n2.20-я группа \n3.10-я группа \nваш выбор: ').strip()
+            input_ = input('\nВыберите в какой вы учебной группе из списка:\n1.30-я группа \n2.20-я группа \n3.10-я группа \nваш выбор: ').strip().lower()
             action = 'выбора своей группы'
         elif flag == 8 and count_ >0:
-            input_ = input('\n Напишите название вашего предмета: ').strip()
+            input_ = input('\n Напишите название вашего предмета: ').strip().lower()
             action = 'названия предмета своей специализации'
         else:
             log(f'превысил допустимое количество попыток ввода {action} .')
@@ -114,18 +114,18 @@ def chek_use_inpt(flag, user = None):
                 else:
                     raise ValueError
             elif flag == 6:
-                if input_.strip().lower() == 'студент' or 'ученик':
+                if input_ == 'студент' or input_ == 'ученик':
                     return '0'
-                elif input_.strip().lower() == 'учитель' or 'преподаватель':
+                elif input_ == 'учитель' or input_ == 'преподаватель':
                     return '1'
                 else:
                     raise ValueError
             elif flag == 7:
-                if input_.strip().lower() == '1' or '30-я' or '30-я группа' or '30':
+                if input_ == '1' or input_ == '30-я' or input_ == '30-я группа' or input_ == '30':
                     return '30'
-                elif input_.strip().lower() == '2' or '20-я' or '20-я группа' or '20':
+                elif input_ == '2' or input_ == '20-я' or input_ == '20-я группа' or input_ == '20':
                     return '20'
-                elif input_.strip().lower() == '3' or '10-я' or '10-я группа' or '10':
+                elif input_ == '3' or input_ == '10-я' or input_ == '10-я группа' or input_ == '10':
                     return '10'
                 else:
                     raise ValueError

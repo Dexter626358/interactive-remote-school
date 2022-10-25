@@ -23,11 +23,11 @@ def registering_a_new_user(data: list):
                 new_password = input('Придумайте ваш пароль: ').strip()
                 status = chek(6)
                 if status:
-                    discription = input('Напишите о себе 2 слова: ')
                     if status == '1':
                         groupe = chek(8)
                     else:
                         groupe = chek(7)
+                    discription = input('Напишите о себе 2 слова: ')
                     if groupe:
                         new_user.append(new_login)
                         new_user.append(new_password)
