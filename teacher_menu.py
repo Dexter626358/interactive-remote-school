@@ -35,6 +35,7 @@ def show_marks(data_user: list):
                 if i[5] == teacher_subject:
                     result = i[0] + " " + i[2] + " " + i[3] + " " + i[4] + '-' + i[6]
                     print(result)
+            log(f'Учитель по предмету {teacher_subject}, {data_user[3]} {data_user[4]} посмотрел все оценки групп')
         elif teacher_click == '2':
             group_number = input("Введите номер группы: ").strip()
             list_group_user = [i for i in marks if i[1] == group_number]
@@ -44,8 +45,11 @@ def show_marks(data_user: list):
                     if i[1] == group_number and i[5] == teacher_subject:
                         result = i[0] + " " + i[2] + " " + i[3] + " " + i[4] + '-' + i[6]
                         print(result)
+                log(f'Учитель по предмету {teacher_subject}, {data_user[3]} {data_user[4]} посмотрел оценки'
+                    f' {group_number}-ой группы')
             else:
                 print(red('\nТакой группы нет в нашей школе.'))
+                log(f'Учитель по предмету {teacher_subject}, {data_user[3]} {data_user[4]} неверно указал номер группы')
                 white('')
                 continue
         elif teacher_click == '3':
@@ -81,8 +85,11 @@ def show_marks(data_user: list):
                         i[6] = new_mark
                         break
                 print(f"Оценка ученика с логином: {student_id} успешно изменена.")
+                log(f'Учитель по предмету {teacher_subject}, {data_user[3]} {data_user[4]} изменил оценку студенту '
+                    f'ID - {student_id} на {new_mark}')
             else:
                 print(red('\nТакой группы нет в нашей школе.'))
+                log(f'Учитель по предмету {teacher_subject}, {data_user[3]} {data_user[4]} неверно указал номер группы')
                 white('')
                 continue
         elif teacher_click == '4':
@@ -95,6 +102,7 @@ def show_marks(data_user: list):
                             file.write(str(marks[i][j]))
                         else:
                             file.write(str(marks[i][j]) + ';')
+            log(f'Учитель по предмету {teacher_subject}, {data_user[3]} {data_user[4]} сохранил измения в базе оценок')
         elif teacher_click == '5':
             break
         else:
@@ -119,6 +127,7 @@ def show_schedule(data: list, data2: list):
             else:
                 print('\nТакой группы нет в нашей школе.')
                 continue
+            log(f'Учитель по предмету {data[7]}, {data2[3]} {data2[4]} посмотрел расписание')
         elif teacher_choose == '2':
             print('Расписание на сентябрь.')
             searchable_group = input("Введите номер нужной группы: ").strip()
@@ -126,6 +135,7 @@ def show_schedule(data: list, data2: list):
             if groupe_list:
                 day_ = cheats(date())
                 vs(data, searchable_group, day_)
+                log(f'Учитель по предмету {data[7]}, {data2[3]} {data2[4]} посмотрел расписание')
                 continue
             else:
                 print('\nТакой группы нет в нашей школе.')
@@ -196,17 +206,21 @@ def teacher_menu(data: list, user: list):
                 if groupe_list:
                     print()
                     sg(data, searchable_group)
+                    log(f'Учитель по предмету {data[7]}, {data[3]} {data[4]} посмотрел список студентов')
                 else:
                     print(red('\nТакой группы нет в нашей школе.'))
                     white('')
                     continue
             elif teacher_click == '2':
                 show_marks(user)
+                log(f'Учитель по предмету {data[7]}, {data[3]} {data[4]} зашел в меню оценок')
             elif teacher_click == '3':
                 sch_list = imp_sch('data_schedule.txt')
                 show_schedule(sch_list, data)
+                log(f'Учитель по предмету {data[7]}, {data[3]} {data[4]} зашел в меню расписания')
             elif teacher_click == '4':
                 homework_menu(user)
+                log(f'Учитель по предмету {data[7]}, {data[3]} {data[4]} зашел в меню ДЗ')
             elif teacher_click == '5':
                 return user.clear()
             else:
@@ -237,6 +251,7 @@ def homework_menu(user: list):
             for homework in homeworks:
                 if homework[0] == searchable_group and homework[1] == teacher_subject:
                     print(f'{homework[1]} - {homework[2][0:-1]}')
+            log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} посмотрел ДЗ группы:{searchable_group}')
         elif teacher_click == '2':
             searchable_group = input("Введите номер группы: ").strip()
             if searchable_group != '10' and searchable_group != '20' and searchable_group != '30':
@@ -247,6 +262,7 @@ def homework_menu(user: list):
             hw_string = input("Напишите домашнее задание для группы: ")
             added_homework = [searchable_group, user[7], hw_string]
             homeworks.append(added_homework)
+            log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} добавил ДЗ группе:{searchable_group}')
         elif teacher_click == '3':
             with open('test_hw.txt', 'w', encoding='utf-8') as file:
                 for i in range(len(homeworks)):
@@ -255,7 +271,9 @@ def homework_menu(user: list):
                             file.write(str(homeworks[i][j]))
                         else:
                             file.write(str(homeworks[i][j]) + ';')
+            log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} сохранил изменения в файле ДЗ')
         elif teacher_click == '4':
+            log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} вышел из меню ДЗ')
             break
         else:
             print(red("Нет такого пункта меню"))
