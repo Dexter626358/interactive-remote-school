@@ -110,7 +110,7 @@ def show_marks(data_user: list):
             continue
 
 
-def show_schedule(data: list, data2: list):
+def show_schedule(data: list, data2: list, user: list):
     day_ = None
     while True:
         print('\n1.Посмотреть расписание на весь месяц.')
@@ -127,7 +127,7 @@ def show_schedule(data: list, data2: list):
             else:
                 print('\nТакой группы нет в нашей школе.')
                 continue
-            log(f'Учитель по предмету {data[7]}, {data2[3]} {data2[4]} посмотрел расписание')
+            log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} посмотрел расписание')
         elif teacher_choose == '2':
             print('Расписание на сентябрь.')
             searchable_group = input("Введите номер нужной группы: ").strip()
@@ -135,7 +135,7 @@ def show_schedule(data: list, data2: list):
             if groupe_list:
                 day_ = cheats(date())
                 vs(data, searchable_group, day_)
-                log(f'Учитель по предмету {data[7]}, {data2[3]} {data2[4]} посмотрел расписание')
+                log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} посмотрел расписание')
                 continue
             else:
                 print('\nТакой группы нет в нашей школе.')
@@ -206,21 +206,21 @@ def teacher_menu(data: list, user: list):
                 if groupe_list:
                     print()
                     sg(data, searchable_group)
-                    log(f'Учитель по предмету {data[7]}, {data[3]} {data[4]} посмотрел список студентов')
+                    log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} посмотрел список студентов')
                 else:
                     print(red('\nТакой группы нет в нашей школе.'))
                     white('')
                     continue
             elif teacher_click == '2':
                 show_marks(user)
-                log(f'Учитель по предмету {data[7]}, {data[3]} {data[4]} зашел в меню оценок')
+                log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} зашел в меню оценок')
             elif teacher_click == '3':
                 sch_list = imp_sch('data_schedule.txt')
-                show_schedule(sch_list, data)
-                log(f'Учитель по предмету {data[7]}, {data[3]} {data[4]} зашел в меню расписания')
+                show_schedule(sch_list, data, user)
+                log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} зашел в меню расписания')
             elif teacher_click == '4':
                 homework_menu(user)
-                log(f'Учитель по предмету {data[7]}, {data[3]} {data[4]} зашел в меню ДЗ')
+                log(f'Учитель по предмету {user[7]}, {user[3]} {user[4]} зашел в меню ДЗ')
             elif teacher_click == '5':
                 return user.clear()
             else:
