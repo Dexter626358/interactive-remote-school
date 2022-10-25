@@ -42,14 +42,15 @@ def show_marks(data_user: list):
                 print()
                 for i in marks:
                     if i[1] == group_number and i[5] == teacher_subject:
-                        result = i[0] + " " + i[2] + " " + i[3] + " " + i[4] + '-'  + i[6]
+                        result = i[0] + " " + i[2] + " " + i[3] + " " + i[4] + '-' + i[6]
                         print(result)
             else:
-                print('\nТакой группы нет в нашей школе.')
+                print(red('\nТакой группы нет в нашей школе.'))
+                white('')
                 continue
         elif teacher_click == '3':
             group_number = input("Введите номер группы: ").strip()
-            list_groupe_user = [i for i in data_user if i[7] == group_number]
+            list_groupe_user = [i for i in marks if i[1] == group_number]
             if list_groupe_user:
                 print()
                 secured_lst = []
@@ -81,7 +82,8 @@ def show_marks(data_user: list):
                         break
                 print(f"Оценка ученика с логином: {student_id} успешно изменена.")
             else:
-                print('\nТакой группы нет в нашей школе.')
+                print(red('\nТакой группы нет в нашей школе.'))
+                white('')
                 continue
         elif teacher_click == '4':
             with open('class_registr.txt', 'w', encoding='utf-8') as file:
